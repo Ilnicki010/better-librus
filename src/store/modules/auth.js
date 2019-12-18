@@ -15,6 +15,10 @@ export default {
     },
     AUTH_ERROR: state => {
       state.status = "error";
+    },
+    AUTH_LOGOUT: state => {
+      state.status = "";
+      state.token = "";
     }
   },
   getters: {
@@ -22,7 +26,7 @@ export default {
     authStatus: state => state.status
   },
   actions: {
-    AUTH_REQUEST: ({ commit, dispatch }, user) => {
+    AUTH_REQUEST: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
         // The Promise used for router redirect in login
         commit("AUTH_REQUEST");
@@ -46,9 +50,12 @@ export default {
           .then(resp => {
             const token = resp.data.access_token;
             localStorage.setItem("user-token", token);
-            axios.defaults.headers.common["Authorization"] = token;
+            console.log(resp);
+
+            axios.defaults.headers.common = {
+              Authorization: `Bearer ${token}`
+            };
             commit("AUTH_SUCCESS", token);
-            dispatch("USER_REQUEST");
             resolve(resp);
           })
           .catch(err => {
@@ -56,6 +63,14 @@ export default {
             localStorage.removeItem("user-token");
             reject(err);
           });
+      });
+    },
+    LOGOUT_REQUEST: ({ commit }) => {
+      return new Promise(resolve => {
+        commit("AUTH_LOGOUT");
+        localStorage.removeItem("user-token");
+        delete axios.defaults.headers.common["Authorization"];
+        resolve();
       });
     }
   }

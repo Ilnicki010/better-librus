@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import auth from "./modules/auth.js";
+import grades from "./modules/grades.js";
+import subjects from "./modules/subjects.js";
 
 Vue.use(Vuex);
 
@@ -11,6 +13,8 @@ export default new Vuex.Store({
   getters: {},
   actions: {},
   modules: {
-    auth
+    auth,
+    grades,
+    subjects
   }
 });

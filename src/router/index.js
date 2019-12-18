@@ -6,7 +6,8 @@ import Account from "../views/Account.vue";
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "home",
     component: Home,
