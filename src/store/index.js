@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import auth from "./modules/auth.js";
 import grades from "./modules/grades.js";
 import subjects from "./modules/subjects.js";
+import categories from "./modules/categories.js";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   modules: {
     auth,
     grades,
-    subjects
+    subjects,
+    categories
   }
 });

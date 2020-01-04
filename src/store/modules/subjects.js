@@ -14,8 +14,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios({
           method: "get",
-          url:
-            "https://cors-anywhere.herokuapp.com/https://api.librus.pl/2.0/Subjects"
+          url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/Subjects`
         })
           .then(data => {
             commit("SET_SUBJECTS", data.data.Subjects);
