@@ -141,6 +141,7 @@ export default {
       this.selected = grade;
       this.gradeDesc = grade;
     },
+    //expand animation methods
     beforeEnter: function(el) {
       el.style.height = "0";
     },
@@ -168,6 +169,7 @@ export default {
         day = datePart[2],
         hour = datePart[3],
         secounds = datePart[4];
+      console.log("test");
       return `${day}/${month} ${hour}:${secounds}`;
     }
   },
