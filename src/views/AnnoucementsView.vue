@@ -1,9 +1,10 @@
 <template>
   <div class="notices-wrapper">
+    <h1>Ogłoszenia</h1>
     <div class="all-notices">
       <div v-for="notice in allNotices" :key="notice.Id" class="notice">
         <h2 class="notice__title">{{ notice.Subject }}</h2>
-        <p class="notice__content">{{ shorten(notice.Content, 150) }} ...</p>
+        <p class="notice__content">{{ notice.Content }}</p>
       </div>
     </div>
   </div>

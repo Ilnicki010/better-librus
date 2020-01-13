@@ -1,5 +1,6 @@
 <template>
   <div class="grades-view-wrapper">
+    <h1>Oceny</h1>
     <carousel :perPage="1" :minSwipeDistance="100">
       <slide v-for="semester in [1, 2]" :key="semester" class="subjects">
         <span class="subjects__semester">Semestr {{ semester }}</span>
@@ -188,7 +189,6 @@ export default {
 <style lang="scss" scoped>
 .grades-view-wrapper {
   width: 100%;
-  font-family: "Exo", sans-serif;
   position: relative;
   .semester {
     color: #797050;

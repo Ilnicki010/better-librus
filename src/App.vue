@@ -1,31 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/account">Oceny</router-link>|
-      <router-link to="/">Terminarz</router-link>|
-      <router-link to="/">Plan lekcji</router-link>
-      <span v-if="isLoggedIn">
-        |
-        <a @click="logout">Wyloguj</a>
-      </span>
-    </div>
-    <router-view />
+    <main-menu />
+    <router-view class="container" />
   </div>
 </template>
 <script>
+import MainMenu from "@/components/MainMenu.vue";
 export default {
-  computed: {
-    isLoggedIn: function() {
-      return this.$store.getters.isAuthenticated;
-    }
-  },
-  methods: {
-    logout: function() {
-      this.$store.dispatch("LOGOUT_REQUEST").then(() => {
-        this.$router.push("/login");
-      });
-    }
+  components: {
+    MainMenu
   }
 };
 </script>
@@ -35,32 +18,26 @@ body {
   padding: 0;
   color: #343434;
 }
+a {
+  text-decoration: none;
+}
 *,
 ::after,
 ::before {
   box-sizing: border-box;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Exo", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #222;
+}
+.container {
   padding: 0 6vw;
+  margin-top: 20vh;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 .expand-enter-active,
 .expand-leave-active {
   transition: height 0.2s ease-in-out;
