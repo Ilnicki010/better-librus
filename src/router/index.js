@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import Account from "../views/Account.vue";
+import GradesView from "../views/GradesView.vue";
+import AnnoucementsView from "../views/AnnoucementsView.vue";
 import store from "@/store/index.js";
 Vue.use(VueRouter);
 
@@ -24,9 +25,17 @@ const routes = [
     }
   },
   {
-    path: "/account",
-    name: "Account",
-    component: Account,
+    path: "/ogloszenia",
+    name: "Ogloszenia",
+    component: AnnoucementsView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/oceny",
+    name: "Oceny",
+    component: GradesView,
     meta: {
       requiresAuth: true
     }

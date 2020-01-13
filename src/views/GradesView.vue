@@ -26,7 +26,7 @@
             />
             <h2 class="single-subject__title">
               {{ subject.Name }} ({{
-                getGradesBySubjectAndSemester(subject.Id, semester).length
+              getGradesBySubjectAndSemester(subject.Id, semester).length
               }})
             </h2>
             <i
@@ -41,10 +41,7 @@
             @before-leave="beforeLeave"
             @leave="leave"
           >
-            <div
-              class="single-subject__body"
-              v-if="show && subject.Id === selected"
-            >
+            <div class="single-subject__body" v-if="show && subject.Id === selected">
               <div class="single-subject__body-inner">
                 <div class="single-subject__grades">
                   <div
@@ -66,8 +63,7 @@
                             getColorById(grade.category.Color.Id).RGB
                           }`
                         }"
-                        >{{ grade.grade.Grade }}</span
-                      >
+                      >{{ grade.grade.Grade }}</span>
                       <div class="grade__item">
                         <span class="grade__label">Kategoria</span>
                         <span>{{ grade.category.Name }}</span>
@@ -204,7 +200,6 @@ export default {
     display: flex;
     position: relative;
     flex-direction: column;
-    max-width: 90%;
     margin: 25px auto;
     width: 100%;
     background: #f5f5f5;
@@ -223,7 +218,8 @@ export default {
         width: 45px;
       }
       .single-subject__title {
-        font-size: 1.17em;
+        font-size: 1em;
+        padding: 10px 7px;
         text-align: left;
       }
       .single-subject__icon {
