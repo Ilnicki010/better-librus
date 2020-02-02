@@ -21,6 +21,29 @@ body {
 a {
   text-decoration: none;
 }
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
 *,
 ::after,
 ::before {
@@ -35,9 +58,11 @@ a {
 }
 .container {
   padding: 0 6vw;
-  margin-top: 20vh;
+  margin-top: 5vh;
 }
-
+.button {
+  cursor: pointer;
+}
 .expand-enter-active,
 .expand-leave-active {
   transition: height 0.2s ease-in-out;

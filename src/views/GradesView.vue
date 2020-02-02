@@ -1,6 +1,6 @@
 <template>
   <div class="grades-view-wrapper">
-    <h1>Oceny</h1>
+    <h1 class="title">Oceny</h1>
     <carousel :perPage="1" :minSwipeDistance="100">
       <slide v-for="semester in [1, 2]" :key="semester" class="subjects">
         <span class="subjects__semester">Semestr {{ semester }}</span>
@@ -27,11 +27,11 @@
             />
             <h2 class="single-subject__title">
               {{ subject.Name }} ({{
-              getGradesBySubjectAndSemester(subject.Id, semester).length
+                getGradesBySubjectAndSemester(subject.Id, semester).length
               }})
             </h2>
             <i
-              class="fa fa-2x fa-angle-down single-subject__icon"
+              class="fa fa-angle-down single-subject__icon"
               :class="{ rotate: selected == subject.Id && show }"
             ></i>
           </header>
@@ -42,7 +42,10 @@
             @before-leave="beforeLeave"
             @leave="leave"
           >
-            <div class="single-subject__body" v-if="show && subject.Id === selected">
+            <div
+              class="single-subject__body"
+              v-if="show && subject.Id === selected"
+            >
               <div class="single-subject__body-inner">
                 <div class="single-subject__grades">
                   <div
@@ -64,7 +67,8 @@
                             getColorById(grade.category.Color.Id).RGB
                           }`
                         }"
-                      >{{ grade.grade.Grade }}</span>
+                        >{{ grade.grade.Grade }}</span
+                      >
                       <div class="grade__item">
                         <span class="grade__label">Kategoria</span>
                         <span>{{ grade.category.Name }}</span>
@@ -82,7 +86,7 @@
         </div>
       </slide>
     </carousel>
-    <img src="@/assets/pattern.svg" alt class="decoral-pattern" />
+    <img src="@/assets/pattern3.png" alt class="decoral-pattern" />
   </div>
 </template>
 
@@ -190,6 +194,7 @@ export default {
 .grades-view-wrapper {
   width: 100%;
   position: relative;
+
   .semester {
     color: #797050;
     opacity: 0.8;
@@ -227,6 +232,14 @@ export default {
         margin-left: auto;
         transform: rotate(0deg);
         transition-duration: 0.3s;
+        background: #ffe9a0;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &.rotate {
           transform: rotate(180deg);
           transition-duration: 0.3s;
@@ -298,8 +311,9 @@ export default {
 }
 .decoral-pattern {
   position: fixed;
-  top: 10vh;
-  height: 100vh;
+  display: none;
+  bottom: 0;
+  width: 40vw;
   right: -70px;
   z-index: -9999;
 }

@@ -51,6 +51,9 @@ export default {
     margin: 20px 0;
     padding: 15px 15px 15px 20px;
     border-radius: 10px;
+    .notice__content {
+      white-space: pre-wrap;
+    }
   }
 }
 </style>
