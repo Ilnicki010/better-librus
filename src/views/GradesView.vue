@@ -219,7 +219,7 @@ export default {
         background: #797050;
       }
     }
-     .subjects__semester--1::after {
+    .subjects__semester--1::after {
       left: 120%;
     }
     .subjects__semester--2::after {

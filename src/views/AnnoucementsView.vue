@@ -3,6 +3,14 @@
     <h1>Ogłoszenia</h1>
     <div class="all-notices">
       <div v-for="notice in allNotices" :key="notice.Id" class="notice">
+        <time :datetime="notice.CreationDate" class="notice__date">
+          <span>
+            {{ getTeacherById(notice.AddedBy.Id).FirstName }}
+            {{ getTeacherById(notice.AddedBy.Id).LastName }}
+          </span>
+          |
+          {{ notice.CreationDate }}
+        </time>
         <h2 class="notice__title">{{ notice.Subject }}</h2>
         <p class="notice__content">{{ notice.Content }}</p>
       </div>
@@ -12,11 +20,15 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
       allNotices: []
     };
+  },
+  computed: {
+    ...mapGetters(["getTeacherById"])
   },
   methods: {
     shorten(text, max) {
@@ -36,6 +48,7 @@ export default {
       )
       .then(data => {
         this.allNotices = data.data.SchoolNotices;
+        this.$store.dispatch("fetchTeachers");
       });
   }
 };
@@ -51,6 +64,10 @@ export default {
     margin: 20px 0;
     padding: 15px 15px 15px 20px;
     border-radius: 10px;
+    .notice__date {
+      opacity: 0.7;
+      font-size: 0.8em;
+    }
     .notice__content {
       white-space: pre-wrap;
     }
