@@ -90,7 +90,6 @@
         </div>
       </slide>
     </carousel>
-    <img src="@/assets/pattern3.png" alt class="decoral-pattern" />
   </div>
 </template>
 
@@ -183,7 +182,7 @@ export default {
       this.$store.dispatch("fetchGrades").then(() => {
         axios
           .get(
-            `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/Colors`
+            `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Colors`
           )
           .then(data => {
             this.colors = data.data.Colors;

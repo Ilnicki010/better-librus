@@ -46,7 +46,7 @@ export default {
       const gradesWithCategories = [];
       const results = await axios({
         method: "get",
-        url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/Grades`
+        url: `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Grades`
       });
 
       results.data.Grades.forEach(async grade => {

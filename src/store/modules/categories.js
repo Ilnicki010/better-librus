@@ -22,7 +22,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios({
           method: "get",
-          url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/Grades/Categories/${categoryId}`
+          url: `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Grades/Categories/${categoryId}`
         })
           .then(data => {
             commit("SET_CURRENT_CATEGORY", data.data.Category);
@@ -35,7 +35,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios({
           method: "get",
-          url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/Grades/Categories`
+          url: `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Grades/Categories`
         })
           .then(data => {
             commit("SET_CATEGORIES", data.data.Categories);

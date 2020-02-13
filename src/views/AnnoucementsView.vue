@@ -44,7 +44,7 @@ export default {
   created() {
     axios
       .get(
-        `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/2.0/SchoolNotices`
+        `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/SchoolNotices`
       )
       .then(data => {
         this.allNotices = data.data.SchoolNotices;

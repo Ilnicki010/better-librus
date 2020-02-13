@@ -32,7 +32,7 @@ export default {
         commit("AUTH_REQUEST");
         axios({
           method: "post",
-          url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/OAuth/Token`,
+          url: `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/OAuth/Token`,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             Authorization:
