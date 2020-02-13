@@ -3,7 +3,11 @@
     <h1 class="title">Oceny</h1>
     <carousel :perPage="1" :minSwipeDistance="100">
       <slide v-for="semester in [1, 2]" :key="semester" class="subjects">
-        <span class="subjects__semester">Semestr {{ semester }}</span>
+        <div class="semesters">
+          <span :class="`subjects__semester--${semester}`"
+            >Semestr {{ semester }}</span
+          >
+        </div>
         <div
           v-for="subject in subjects.subjects"
           :key="subject.Id"
@@ -194,11 +198,33 @@ export default {
 .grades-view-wrapper {
   width: 100%;
   position: relative;
-
-  .semester {
+  .subjects {
+    position: relative;
+  }
+  .semesters {
     color: #797050;
     opacity: 0.8;
     font-size: 1em;
+    .subjects__semester--1,
+    .subjects__semester--2 {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        width: 50vw;
+        height: 3px;
+        background: #797050;
+      }
+    }
+     .subjects__semester--1::after {
+      left: 120%;
+    }
+    .subjects__semester--2::after {
+      right: 120%;
+    }
   }
 
   .subjects__single-subject {
