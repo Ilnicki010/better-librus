@@ -92,7 +92,6 @@ img {
 }
 .navigation__item {
   margin: 0 5%;
-
   .navigation__link {
     display: flex;
     justify-content: space-around;
@@ -100,19 +99,16 @@ img {
     padding: 10px 20px;
     text-decoration: none;
     font-weight: 600;
+
     background: rgba(255, 233, 160, 0.2);
     border-radius: 100px;
     color: #000;
-    &.router-link-exact-active {
-      background: rgba(167, 152, 104, 0.2);
-    }
     &.navigation__link--logout {
       border: 1px solid #222;
       background: transparent;
     }
   }
 }
-
 .sr-only {
   border: 0;
   clip: rect(0, 0, 0, 0);

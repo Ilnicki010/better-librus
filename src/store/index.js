@@ -6,6 +6,7 @@ import grades from "./modules/grades.js";
 import subjects from "./modules/subjects.js";
 import categories from "./modules/categories.js";
 import teachers from "./modules/teachers.js";
+import annocements from "./modules/annocements.js";
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     grades,
     subjects,
     categories,
-    teachers
+    teachers,
+    annocements
   }
 });

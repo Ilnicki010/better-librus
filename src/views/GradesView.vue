@@ -3,11 +3,7 @@
     <h1 class="title">Oceny</h1>
     <carousel :perPage="1" :minSwipeDistance="100">
       <slide v-for="semester in [1, 2]" :key="semester" class="subjects">
-        <div class="semesters">
-          <span :class="`subjects__semester--${semester}`"
-            >Semestr {{ semester }}</span
-          >
-        </div>
+        <span class="subjects__semester">Semestr {{ semester }}</span>
         <div
           v-for="subject in subjects.subjects"
           :key="subject.Id"
@@ -173,13 +169,22 @@ export default {
         day = datePart[2],
         hour = datePart[3],
         secounds = datePart[4];
-      console.log("test");
       return `${day}/${month} ${hour}:${secounds}`;
     }
   },
   mounted() {
     this.$store.dispatch("fetchSubjects").then(() => {
-      this.$store.dispatch("fetchGrades").then(() => {
+      if (this.grades.grades.length === 0) {
+        this.$store.dispatch("fetchGrades").then(() => {
+          axios
+            .get(
+              `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Colors`
+            )
+            .then(data => {
+              this.colors = data.data.Colors;
+            });
+        });
+      } else {
         axios
           .get(
             `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/Colors`
@@ -187,7 +192,7 @@ export default {
           .then(data => {
             this.colors = data.data.Colors;
           });
-      });
+      }
     });
   }
 };
@@ -201,7 +206,7 @@ export default {
     position: relative;
   }
   .semesters {
-    color: #797050;
+    color: $dark;
     opacity: 0.8;
     font-size: 1em;
     .subjects__semester--1,
@@ -215,7 +220,7 @@ export default {
         margin: auto 0;
         width: 50vw;
         height: 3px;
-        background: #797050;
+        background:$dark;
       }
     }
     .subjects__semester--1::after {
@@ -257,7 +262,7 @@ export default {
         margin-left: auto;
         transform: rotate(0deg);
         transition-duration: 0.3s;
-        background: #ffe9a0;
+        background: $primary;
         padding: 5px;
         width: 30px;
         height: 30px;

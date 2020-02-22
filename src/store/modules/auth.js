@@ -32,7 +32,7 @@ export default {
         commit("AUTH_REQUEST");
         axios({
           method: "post",
-          url: `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/OAuth/Token`,
+          url: `${process.env.VUE_APP_CORS_SERVER_URL}/https://api.librus.pl/OAuth/Token`,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             Authorization:
@@ -49,8 +49,6 @@ export default {
           .then(resp => {
             const token = resp.data.access_token;
             localStorage.setItem("user-token", token);
-            console.log(resp);
-
             axios.defaults.headers.common = {
               Authorization: `Bearer ${token}`
             };

@@ -9,6 +9,15 @@ export default {
     }
   },
   getters: {
+    getLatestGrade: state => {
+      const fromLatest = state.grades.sort((el, el2) => {
+        const date1 = new Date(el.AddDate);
+        const date2 = new Date(el2.AddDate);
+
+        date1.getTime() < date2.getTime();
+      });
+      return fromLatest[0];
+    },
     getGradesBySubjectAndSemester: state => (subjectId, semester) => {
       return state.grades.filter(el => {
         if (

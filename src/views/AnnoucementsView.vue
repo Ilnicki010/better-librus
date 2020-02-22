@@ -2,9 +2,13 @@
   <div class="notices-wrapper">
     <h1>Ogłoszenia</h1>
     <div class="all-notices">
-      <div v-for="notice in allNotices" :key="notice.Id" class="notice">
+      <div
+        v-for="notice in annocements.annocements"
+        :key="notice.Id"
+        class="notice"
+      >
         <time :datetime="notice.CreationDate" class="notice__date">
-          <span>
+          <span v-if="getTeacherById(notice.AddedBy.Id)">
             {{ getTeacherById(notice.AddedBy.Id).FirstName }}
             {{ getTeacherById(notice.AddedBy.Id).LastName }}
           </span>
@@ -19,8 +23,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   data: function() {
     return {
@@ -28,7 +31,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getTeacherById"])
+    ...mapGetters(["getTeacherById"]),
+    ...mapState(["annocements"])
   },
   methods: {
     shorten(text, max) {
@@ -42,14 +46,11 @@ export default {
     }
   },
   created() {
-    axios
-      .get(
-        `${process.env.VUE_APP_CORS_SERVER_URL}/${process.env.VUE_APP_API_URL}/SchoolNotices`
-      )
-      .then(data => {
-        this.allNotices = data.data.SchoolNotices;
+    if (this.annocements.annocements.length === 0) {
+      this.$store.dispatch("fetchAllAnnocements").then(() => {
         this.$store.dispatch("fetchTeachers");
       });
+    }
   }
 };
 </script>
@@ -64,10 +65,6 @@ export default {
     margin: 20px 0;
     padding: 15px 15px 15px 20px;
     border-radius: 10px;
-    .notice__date {
-      opacity: 0.7;
-      font-size: 0.8em;
-    }
     .notice__content {
       white-space: pre-wrap;
     }
